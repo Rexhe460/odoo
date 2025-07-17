@@ -1,0 +1,4 @@
+# security/ir.model.access.csv
+# Grants basic access to the invoice.entry model for all internal users.
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_invoice_entry_user,invoice_entry_user,model_invoice_entry,base.group_user,1,1,1,1

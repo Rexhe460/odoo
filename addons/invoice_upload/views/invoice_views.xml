@@ -1,0 +1,48 @@
+<!-- views/invoice_views.xml
+     XML definitions for the invoice entry list and form views.
+-->
+<odoo>
+    <record id="view_invoice_entry_tree" model="ir.ui.view">
+        <field name="name">invoice.entry.tree</field>
+        <field name="model">invoice.entry</field>
+        <field name="arch" type="xml">
+            <tree string="Uploaded Invoices">
+                <field name="name"/>
+                <field name="invoice_type"/>
+                <field name="move_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_invoice_entry_form" model="ir.ui.view">
+        <field name="name">invoice.entry.form</field>
+        <field name="model">invoice.entry</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Entry">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="file" filename="file_name"/>
+                        <field name="file_name"/>
+                        <field name="invoice_type" readonly="1"/>
+                        <field name="move_id" readonly="1"/>
+                        <field name="state" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button string="Process" type="object" name="action_process" states="draft" class="oe_highlight"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_invoice_entry" model="ir.actions.act_window">
+        <field name="name">Invoice Entries</field>
+        <field name="res_model">invoice.entry</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_invoice_entry" name="Invoice Upload" parent="account.menu_finance" action="action_invoice_entry"/>
+</odoo>
